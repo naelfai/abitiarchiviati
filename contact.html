@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Abiti Archiviati</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+      emailjs.init('qQyky2mzOuZ9E-NRg');
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="home.html">
+                    <img src="images/logo.png" alt="Abiti Archiviati Logo">
+                </a>
+                <a href="#favorites">
+                    <img src="images/heartlogo.png" class="heartlogo" alt="Favorites">
+                </a>
+                <a href="#shoppingcart">
+                    <img src="images/shoppingicon.png" class="shoppingicon" alt="Shopping Cart">
+                </a>
+            </div>
+            <div class="nav-container">
+                <ul class="nav-links">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="styles.html">Styles</a></li>
+                </ul>
+                <div class="search-bar">
+                    <img src="images/searchbarlogo.png" alt="Search Icon" class="searchbarlogo">
+                    <input type="text" class="search-input" placeholder="Search">
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="contact-page">
+        <section class="contact-section">
+            <div class="contact-text">
+                <h2>Contact Us</h2>
+                <p>Abiti Archiviati support is handled by one person, and will try to help you as fast as possible. You can contact us through our <a href="https://www.instagram.com/abitiarchiviati/" target="_blank">Instagram</a>, or email us at <a href="mailto:abitiarchiviati@gmail.com">abitiarchiviati@gmail.com</a>.</p>
+            </div>
+            <div class="contact-form">
+                <form id="form">
+                    <div class="field">
+                        <label for="first_name">First Name</label>
+                        <input type="text" name="first_name" id="first_name" required>
+                    </div>
+                    <div class="field">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" name="last_name" id="last_name" required>
+                    </div>
+                    <div class="field">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" required>
+                    </div>
+                    <div class="field">
+                        <label for="message">Message</label>
+                        <input type="text" name="message" id="message" required>
+                    </div>
+                    <div class="field">
+                        <label for="subject">Subject</label>
+                        <input type="text" name="subject" id="subject" required>
+                    </div>
+                    <input type="submit" id="button" class="submit-button" value="Submit">
+                </form>
+                <p id="form-status"></p>
+            </div>
+        </section>
+
+        <section class="slideshow-container">
+            <div class="slide fade">
+                <img src="images/style1.png" style="width:100%">
+            </div>
+            <div class="slide fade">
+                <img src="images/style2.png" style="width:100%">
+            </div>
+            <div class="slide fade">
+                <img src="images/style3.png" style="width:100%">
+            </div>
+            <div class="slide fade">
+                <img src="images/style4.png" style="width:100%">
+            </div>
+            <div class="slide fade">
+                <img src="images/style5.png" style="width:100%">
+            </div>
+
+            
+        </section>
+
+       
+
+        <a href="styles.html" class="explore-button">Explore Our Styles!</a>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://www.instagram.com/abitiarchiviati/" target="_blank">
+                <img src="images/instagram.png" alt="Instagram">
+            </a>
+            <a href="mailto:abitiarchiviati@gmail.com">
+                <img src="images/maillogo.png" class="mail-logo" alt="Email">
+            </a>
+        </div>
+        <p>&copy; 2024 Abiti Archiviati</p>
+    </footer>
+
+    <script type="text/javascript">
+        const btn = document.getElementById('button');
+
+        document.getElementById('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            btn.value = 'Sending...';
+
+            const serviceID = 'default_service';
+            const templateID = 'template_ocmjgyl';
+
+            emailjs.sendForm(serviceID, templateID, this)
+                .then(() => {
+                    btn.value = 'Submit';
+                    document.getElementById('form-status').innerText = 'Submitted!';
+                }, (err) => {
+                    btn.value = 'Submit';
+                    alert(JSON.stringify(err));
+                });
+        });
+
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let slides = document.getElementsByClassName("slide");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}
+            slides[slideIndex-1].style.display = "block";
+            setTimeout(showSlides, 4000); 
+        }
+    </script>
+</body>
+</html>
